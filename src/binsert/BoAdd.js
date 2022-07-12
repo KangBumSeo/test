@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
-
+import { dataList } from "../DataList";
+import tableHtml from "../bview/Main";
 
 export default function BoAddClick(){
     return(
@@ -22,7 +23,8 @@ export default function BoAddClick(){
 }
 
 export function BoAddSubmit(prop){
-    const tableTarget = document.getElementById("mainTable");
+    //const tableTarget = document.getElementById("mainTable");
+    const tableTarget = document.getElementById("root");
     const tableTest = ReactDOM.createRoot(tableTarget);
 
     console.log(tableTest)
@@ -34,16 +36,16 @@ export function BoAddSubmit(prop){
     console.log(userName);
     console.log(age);
     console.log(etc);
-
-    const fn_createRoot = 
-    (
-            <tr>
-                <td key={0}>{userName}</td>
-                <td key={0}>{age}</td>
-                <td key={0}>{etc}</td>
-            </tr>
-    );
     
-    tableTest.render(fn_createRoot);
+    const fn_append_data = {
+        userName : userName,
+        age : age ,
+        etc : etc ,
+    }
+
+    dataList.push(fn_append_data);
+
+    tableTest.render(tableHtml());
+    //tableTest.render(fn_createRoot);
 }
 
