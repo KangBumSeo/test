@@ -20,7 +20,7 @@ export default function BoAddClick(){
     )
 }
 
-const enterKey = (e) => {if(e.key === 'Enter') BoAddSubmit()};
+const enterKey = (e) => { if(e.key === 'Enter') BoAddSubmit() };
 
 
 export function BoAddSubmit(prop){
