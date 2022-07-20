@@ -36,16 +36,21 @@ export function BoAddSubmit(prop){
     console.log(userName);
     console.log(age);
     console.log(etc);
-    
-    const fn_append_data = {
-        userName : userName,
-        age : age ,
-        etc : etc ,
+
+    if( userName !== '' && age !== '' && etc !== ''){
+        const fn_append_data = {
+            userName : userName,
+            age : age ,
+            etc : etc ,
+        }
+
+        dataList.push(fn_append_data);
+
+        tableTest.render(tableHtml());
+        //tableTest.render(fn_createRoot);
     }
-
-    dataList.push(fn_append_data);
-
-    tableTest.render(tableHtml());
-    //tableTest.render(fn_createRoot);
+    else{
+        alert("값은 전체 다 채우셔야합니다.");
+    }
 }
 
