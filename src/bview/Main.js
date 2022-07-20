@@ -18,7 +18,9 @@ export default function mainHtml(){
 export function tableHtml(){
     return (
         <table id="mainTable" ref={BoAdd}>
+            <tbody>
             <BoList/>
+            </tbody>
         </table>
     )
 }

@@ -6,21 +6,22 @@ import tableHtml from "../bview/Main";
 export default function BoAddClick(){
     return(
         <div>
-            <addList>
-             <tr>
-                <td>NAME : <input id='AddUserName'  /> </td>
-             </tr>
-             <tr>
-                <td>AGE : <input id='Age'  /> </td>
-             </tr>
-             <tr>
-                <td>ETC : <input id='Etc'  /> </td>
-             </tr>
+             <div>
+                <div>NAME : <input id='AddUserName' onKeyPress={enterKey} /> </div>
+             </div>
+             <div>
+                <div>AGE : <input id='Age' onKeyPress={enterKey} /> </div>
+             </div>
+             <div>
+                <div>ETC : <input id='Etc' onKeyPress={enterKey}  /> </div>
+             </div>
              <button onClick={BoAddSubmit}> 등록 </button>
-            </addList>
         </div>
     )
 }
+
+const enterKey = (e) => {if(e.key === 'Enter') BoAddSubmit()};
+
 
 export function BoAddSubmit(prop){
     //const tableTarget = document.getElementById("mainTable");
