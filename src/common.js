@@ -387,7 +387,63 @@ dateSet.getNextDate = ( fnSettingDate , fnSettingDateNum , fnDateFormet ) => {
 	else{ returnDate = year + month + date }
 }
 
+let viewName = '';
+let urlData;
+function refreshView( fnUrlMapSelect ){
+	
+	// 정상 호출 아닐시 settingChk 함수에서 멈춘다.
+	refreshView.settingChk( urlData , fnUrlMapSelect )
+	
+	// .load( html ) 추가하여 진행 가능 
+	// 전페이지 location.reload();  location.reload(false) 기본값 :캐쉬로 리플래쉬 location.reload(true) 서버에서 리플래쉬  
+	// 10초마다 리로드  setTimeout('location.reload()',10000); 
+	// 특정 영역 : $("#div의 id").load(window.location.href + "#div의 id");
+	// history.state : url 정보 및 이전 정보 떙겨 올수 있을거같음 
+	if( $('#'+viewName).length > 0 ){
+		$('#'+viewName).children();
+	}
+	else if( $('.'+viewName).length > 0 ){
+		
+	}
+}
 
+refreshView.setUrlMap = ( fnUrlMap ) => {
+	urlData = {}; 
+	urlData = fnUrlMap;
+};
+
+refreshView.setUrlArr = ( fnUrlArr )=>{
+	urlData = []; 
+	urlData = fnUrlArr;
+}
+
+refreshView.setUrlStr = ( fnUrlStr ) => {
+	urlData = ''; 
+	urlData = fnUrlStr;
+}
+
+/** 리플래쉬 함수 호출시 정상데이터 호출인지 체크함수
+ * @param fnUrlSetData : URL 셋팅 데이터 입니다.
+ * @param fnUrlSelect : 리플래쉬해야하는 URL 선택한 데이터입니다.
+ * @return void
+ */
+refreshView.settingChk = ( fnUrlSetData , fnUrlSelect ) => {
+	const urlParam = typeof fnUrlSetData;
+	const urlArr = Array.isArray(fnUrlSetData);
+	
+	if( urlParam === 'string' && fnUrlSelect != '' ){
+		throw new Erorr('리로드 시 URL 셋팅 부분 확인 필요합니다. ( Code : 01 )');
+		return;
+	}
+	else if( urlParam === 'object' && !urlArr && !/0-9/gi.test( Number(fnUrlSelect) ) ){
+		throw new Erorr('리로드 시 URL 셋팅 부분 확인 필요합니다. ( Code : 02 )');
+		return;
+	}
+	else if( urlParam === 'object' && urlArr && /0-9/gi.test( Number(fnUrlSelect) ) ){
+		throw new Erorr('리로드 시 URL 셋팅 부분 확인 필요합니다. ( Code : 03 )');
+		return;
+	}
+}
 /** jsp와 js 역활분담 분리 작업 필요
  *  
  * 결재버튼 js 수정 필요 ( make_url , paymet )
